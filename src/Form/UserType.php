@@ -4,8 +4,10 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,19 +17,20 @@ class UserType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class, array(
-                'label'=> "Email"
+                'label' => 'Введите email'
             ))
-            ->add('password', RepeatedType::class, array(
-                'type'=> PasswordType::class, array(
-                    'first_option'=> array(
-                        'label'=>'Пароль'
-                    ),
-                    'second_option'=>array(
-                        'label'=>'Повторите пароль'
-                    )
-                )
+            ->add('plainPassword', RepeatedType::class, array(
+                'type' => PasswordType::class,
+                'first_options' => array(
+                    'label' => 'Пароль',
+                ),
+                'second_options' => array(
+                    'label' => 'Повтор пароля',
+                ),
             ))
-        ;
+            ->add('save', SubmitType::class, array(
+                'label' => 'Сохранить'
+            ));
     }
 
     public function configureOptions(OptionsResolver $resolver)

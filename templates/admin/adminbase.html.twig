@@ -5,6 +5,9 @@
     <title>{% block title %}Welcome!{% endblock %}</title>
     {% block stylesheets %}{% endblock %}
 </head>
+<header>
+    <a href="{{ path('app_logout') }}">Выход</a>
+</header>
 <body>
 {% block body %}{% endblock %}
 {% block javascripts %}{% endblock %}
